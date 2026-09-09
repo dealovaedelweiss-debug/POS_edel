@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +12,7 @@
 
     @include('inc.css')
 </head>
+
 <body>
 
     <!-- ==========================================
@@ -26,8 +28,8 @@
 
             <!-- Brand Identity -->
             <a href="index.html" class="login-brand text-decoration-none">
-                <i class="bi bi-asterisk"></i>
-                <span>Spark Admin</span>
+                {{-- <i class="bi bi-asterisk"></i> --}}
+                <span>POS</span>
             </a>
 
             <p class="login-subtitle">Please sign in to access your dashboard</p>
@@ -51,8 +53,9 @@
                     <label for="email" class="login-form-label">Email Address</label>
                     <div class="login-input-group">
                         <i class="bi bi-envelope input-icon"></i>
-                        <input  name="email"type="email" id="email" class="login-input @error('email')is-invalid @enderror" placeholder="name@company.com" required
-                        value="{{ old('email') }}">
+                        <input name="email"type="email" id="email"
+                            class="login-input @error('email')is-invalid @enderror" placeholder="name@company.com"
+                            required value="{{ old('email') }}">
                     </div>
                     @error('email')
                         <div class="invalid-feedback">{{ $message }}</div>
@@ -64,9 +67,11 @@
                     <label for="password" class="login-form-label">Password</label>
                     <div class="login-input-group">
                         <i class="bi bi-shield-lock input-icon"></i>
-                        <input type="password" name="password" id="password" class="login-input login-input-password @error('password')is-invalid @enderror"
-                        placeholder="••••••••" required value="{{ old('password') }}">
-                        <button type="button" class="password-toggle-btn" id="toggle-password" aria-label="Show password">
+                        <input type="password" name="password" id="password"
+                            class="login-input login-input-password @error('password')is-invalid @enderror"
+                            placeholder="••••••••" required value="{{ old('password') }}">
+                        <button type="button" class="password-toggle-btn" id="toggle-password"
+                            aria-label="Show password">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
@@ -97,4 +102,5 @@
 
     @include('inc.js')
 </body>
+
 </html>
