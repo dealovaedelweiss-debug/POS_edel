@@ -78,11 +78,14 @@
                         </li>
 
                         <li class="sidebar-menu-item">
-                            <a href="#" class="sidebar-menu-link" id="menu-logout" title="Log-Out">
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout').submit()"
+                            class="sidebar-menu-link" id="menu-logout" title="Log-Out">
                                 <span>Log-Out</span>
+                                <form action="{{ route('logout') }}" id="logout" method="post" class="d-none">
+                                    @csrf
+                                </form>
                             </a>
                         </li>
-
                         <li class="sidebar-menu-item">
                             <a href="#" class="sidebar-menu-link" id="menu-404" title="404 Page">
                                 <span>Error 404</span>

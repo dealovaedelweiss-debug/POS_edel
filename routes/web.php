@@ -17,6 +17,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/', [LoginController::class, 'login']);
     Route::get('/login', [LoginController::class, 'login']);
     Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
+    Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
     Route::resource('dashboard', DashboardController::class);
     Route::resource('user', UserController::class);
