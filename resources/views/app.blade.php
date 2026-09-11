@@ -67,10 +67,30 @@
                         </li>
 
                         <li class="sidebar-menu-item">
+                            <a href="{{ route('stock.index') }}" class="sidebar-menu-link" id="menu-category"
+                                title="Category">
+                                <span>Stock</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-menu-item">
                             <a href="{{ route('role.index') }}" class="sidebar-menu-link" id="menu-user" title="User">
                                 <span>Role</span>
                             </a>
                         </li>
+
+                        <li class="sidebar-menu-item">
+                            <a href="{{ route('transaction.index') }}" class="sidebar-menu-link" id="menu-user" title="User">
+                                <span>Transaction</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-menu-item">
+                            <a href="{{ route('report.index') }}" class="sidebar-menu-link" id="menu-user" title="User">
+                                <span>Report</span>
+                            </a>
+                        </li>
+
                         <li class="sidebar-menu-item">
                             <a href="{{ route('user.index') }}" class="sidebar-menu-link" id="menu-user" title="User">
                                 <span>User</span>

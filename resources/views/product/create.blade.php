@@ -28,6 +28,10 @@
             <input type="file" class="form-control" name="photo">
         </div>
         <div class="mb-3">
+            <label for="" class="form-label">Description</label>
+            <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+        </div>
+        <div class="mb-3">
             <button class="btn btn-primary" type="submit">Simpan</button>
         </div>
     </form>
