@@ -23,6 +23,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/actionLogin', [LoginController::class, 'actionLogin'])->name('actionLogin');
     Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
     Route::get('/transaction', [TransactionController::class, 'index'])->name('transaction.index');
+    Route::post('/transaction', [TransactionController::class, 'store'])->name('order.store');
     Route::get('/stock', [StockController::class, 'index'])->name('stock.index');
     Route::get('/report', [ReportController::class, 'index'])->name('report.index');
 

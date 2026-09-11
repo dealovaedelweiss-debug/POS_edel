@@ -8,95 +8,24 @@ use Illuminate\Routing\Controller;
 
 class ReportController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        // Ambil tanggal dari form
-        $startDate = $request->start_date;
-        $endDate = $request->end_date;
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
 
-        // Query transaksi
         $query = Order::query();
-        // Filter tanggal awal
-        if ($startDate) {
-            $query->whereDate('created_at', '>=', $startDate);
+
+        // Filter berdasarkan rentang tanggal jika diisi
+        if ($startDate && $endDate) {
+            $query->whereBetween('created_at', [$startDate.' 00:00:00', $endDate.' 23:59:59']);
         }
 
-        // Filter tanggal akhir
-        if ($endDate) {
-            $query->whereDate('created_at', '<=', $endDate);
-        }
+        $transactions = $query->latest()->get();
 
-        // Ambil data transaksi
-        $orders = $query
-            ->orderBy('created_at', 'desc')
-            ->get();
+        // Menghitung total transaksi dan total pendapatan
+        $totalTransaksi = $transactions->count();
+        $totalPendapatan = $transactions->sum('total_price');
 
-        // Total transaksi
-        $totalTransactions = $orders->count();
-
-        // Total pendapatan
-        // Hanya transaksi yang sudah dibayar
-        $totalRevenue = $orders
-            ->where('payment_status', 1)
-            ->sum('total_price');
-
-        return view('report.index', compact(
-            'orders',
-            'totalTransactions',
-            'totalRevenue',
-            'startDate',
-            'endDate'
-        ));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return view('report.index', compact('transactions', 'totalTransaksi', 'totalPendapatan', 'startDate', 'endDate'));
     }
 }
